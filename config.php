@@ -10,11 +10,8 @@ if ($devMode) {
 
 //Aktivera stöd för att inkludera klasser automatiskt
 spl_autoload_register(function ($class_name) {
-    require_once 'classes/' . $class_name . 'class.php';
+    require_once 'classes/' . $class_name . '.class.php';
 });
 
-if ($devMode) {
-    // Lokal databasanslutning
-} else {
-    // Produktionsdatabasanslutning
-}
+// Ladda in databasinställningar 
+require_once ($devMode ? 'config.local.php' : 'config.production.php');

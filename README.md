@@ -11,3 +11,9 @@ Webbplatsen har tre sidor:
 - Startsida: beskriver uppgiften och min upplevelse av PHP
 - Bucketlist: sida där man kan lägga till saker till en bucketlist via formulär
 - AI: sida som beskriver om jag har använt AI-verktyg för att lösa uppgiften och mina slutsatser av det.
+
+## Databasanslutning
+Projektet använder separata konfigurationsfiler för lokal utveckling och produktionsmiljö.
+- `config.local.php` innehåller anslutningsuppgifter för den lokala databasen (XAMPP).
+- `config.production.php` innehåller anslutningsuppgifter för databasen på Mittuniversitetets server.
+Filerna är exkluderade från versionshantering via `.gitignore` för att skydda databasuppgifter.
