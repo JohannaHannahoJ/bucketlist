@@ -9,9 +9,11 @@
 </head>
 
 <body>
+    <a href="#main-content" class="skip-link">Hoppa till innehåll</a>
+
     <div class="container">
         <header>
-            <nav>
+            <nav aria-label="Huvudmeny">
                 <ul class="topnav">
                     <li><a href="index.php"
                             class="<?= $currentPage === 'index' ? 'active' : '' ?>"
@@ -24,4 +26,4 @@
             </nav>
         </header>
 
-        <main>
+        <main  id="main-content">
