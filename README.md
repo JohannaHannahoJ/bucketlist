@@ -3,7 +3,8 @@ Det här prijektet är en del av kursen **Webbutveckling för WordPress** som ge
 
 Syftet med laborationen är att skapa en webbplats med HTML, CSS, objektorienterad PHP och databasanslutning.
 
-Länk till webbplatsen: *Kommer snart*
+**Länk till webbplatsen**: *Kommer snart*
+**ER- och UML-diagram**: Se mappen `documentation/`.
 
 ## Webbplatsens innehåll
 Webbplatsen har tre sidor:
