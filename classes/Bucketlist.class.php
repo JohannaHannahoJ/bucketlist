@@ -18,8 +18,11 @@ class Bucketlist
     }
 
     // Lägg till en post i bucketlistan
-    public function add(string $name,string  $description, int $priority): bool
+    public function add(string $name, string  $description, int $priority): bool
     {
+        if (empty(trim($name))) return false;
+        if (!in_array($priority, [1, 2, 3])) return false;
+        
         $sql = "INSERT INTO bucketlist (name, description, priority)
                 VALUES (:name, :description, :priority)";
 
