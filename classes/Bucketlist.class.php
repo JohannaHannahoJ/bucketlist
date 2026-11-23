@@ -22,7 +22,7 @@ class Bucketlist
     {
         if (empty(trim($name))) return false;
         if (!in_array($priority, [1, 2, 3])) return false;
-        
+
         $sql = "INSERT INTO bucketlist (name, description, priority)
                 VALUES (:name, :description, :priority)";
 
@@ -33,5 +33,16 @@ class Bucketlist
             ':description' => $description,
             ':priority' => $priority
         ]);
+    }
+
+    // Hämta alla objekt från databasen. 
+    public function getAll(): array
+    {
+        // sortera i prioriteringsordning och sdatum för tillagt
+        $sql = "SELECT * FROM bucketlist ORDER BY priority DESC, created_at DESC";
+
+        $stmt = $this->db->query($sql);
+
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 }

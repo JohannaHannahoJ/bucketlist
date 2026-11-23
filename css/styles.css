@@ -84,6 +84,31 @@ nav a.active {
     z-index: 1000;
 }
 
+.bucketlist {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.bucketlist-card {
+    background-color: var(--piff);
+    padding: 1.5rem;
+    flex: 1 1 280px;
+
+    border-radius: 8px;
+    border:2px dotted var(--text);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+}
+
+.bucketlist-card .date {
+    font-size: 0.7rem;
+    margin-bottom: 0.5rem;
+}
+
+.bucketlist-card .priority {
+    font-size: 0.8rem;
+    margin-top: 1rem;
+}
 
 .add-bucketlist {
     border: 2px dotted var(--piff);
