@@ -15,16 +15,35 @@ require_once 'includes/header.php';
     <?php
     $bucketlist = new Bucketlist();
 
+    // Nollställ variabler
+    $name = '';
+    $description = '';
+    $priority = '';
+
+    $nameError = '';
+    $priorityError = '';
+
     // Kolla om formuläret är postat och hämtar värden
-    if (isset($_POST['name'])) {
-        $name = $_POST['name'];
-        $description = $_POST['description'];
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        $name = trim($_POST['name']);
+        $description = trim($_POST['description']);
         $priority = $_POST['priority'];
 
-        if ($bucketlist->add($name, $description, (int)$priority)) {
-            echo '<p class="message">Tillagd i bucketlistan!</p>';
-        } else {
-            echo '<p class="message error">Hoppsan! Något gick fel.</p>';
+        if (empty($name)) {
+            $nameError = 'Du måste ange vad du vill göra.';
+        }
+
+        if (empty($priority)) {
+            $priorityError = 'Du måste välja en prioritet.';
+        }
+
+        if (empty($nameError) && empty($priorityError)) {
+            if ($bucketlist->add($name, $description, (int)$priority)) {
+                echo '<p class="message">Tillagd i bucketlistan!</p>';
+                $name = $description = $priority = '';
+            } else {
+                echo '<p class="message error">Hoppsan! Något gick fel.</p>';
+            }
         }
     }
     ?>
@@ -32,11 +51,16 @@ require_once 'includes/header.php';
     <form method="post" action="bucketlist.php">
         <label for="name">Vad vill du göra?</label>
         <input type="text" id="name" name="name"
-            placeholder="Ex. Resa till Japan eller lära mig stå på händer..." required>
+            placeholder="Ex. Resa till Japan eller lära mig stå på händer..."
+            value="<?= htmlspecialchars($name) ?>" required>
+
+        <?php if (!empty($nameError)) : ?>
+            <p class="message error"><?= $nameError ?></p>
+        <?php endif; ?>
 
         <label for="description">Berätta lite mer!</label>
         <textarea id="description" name="description"
-            placeholder="Vad har du tänkt dig? Varför vill du göra det?"></textarea>
+            placeholder="Vad har du tänkt dig? Varför vill du göra det?"><?= htmlspecialchars($description) ?></textarea>
 
         <label for="priority">Hur viktigt är det för dig att förverkliga den här drömmen?</label>
         <select id="priority" name="priority" required>
@@ -45,6 +69,10 @@ require_once 'includes/header.php';
             <option value="2">Medel - Jag vill verkligen få det gjort</option>
             <option value="3">Hög - Det här står högt på önskelistan</option>
         </select>
+
+        <?php if (!empty($priorityError)) : ?>
+            <p class="message error"><?= $priorityError ?></p>
+        <?php endif; ?>
 
         <button type="submit" name="submit">Lägg till på min bucketlist</button>
     </form>
