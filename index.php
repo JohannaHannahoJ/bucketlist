@@ -3,12 +3,6 @@ $title = "Om uppgiften";
 $currentPage = "index";
 require_once 'config.php';
 require_once 'includes/header.php';
-
-$db = new Database();
-echo "Databasanslutningen fungerar!<br>";
-
-$bucketlist = new Bucketlist();
-echo "Bucketlist-klassen fungerar!";
 ?>
 <h1>Om uppgiften</h1>
 <div class="ingress">

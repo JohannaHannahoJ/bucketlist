@@ -24,7 +24,7 @@ require_once 'includes/header.php';
         if ($bucketlist->add($name, $description, (int)$priority)) {
             echo '<p class="message">Tillagd i bucketlistan!</p>';
         } else {
-            echo '<p class="message">Hoppsan! Något gick fel.</p>';
+            echo '<p class="message error">Hoppsan! Något gick fel.</p>';
         }
     }
     ?>
