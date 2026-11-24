@@ -37,6 +37,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
+// Kolla om en bucketlist-post ska tas bort
+if (isset($_GET['deleteid'])) {
+    $id = intval($_GET['deleteid']);
+
+    if ($bucketlist->deleteItem($id)) {
+        echo '<p class="message">Bucketlist-posten har tagits bort!</p>';
+    } else {
+        echo '<p class="message error">Kunde inte ta bort posten.</p>';
+    }
+}
+
 $items = $bucketlist->getAll();
 
 require_once 'includes/header.php';
@@ -65,6 +76,7 @@ require_once 'includes/header.php';
                 }
                 ?>
             </p>
+            <a class="delete-button" href="bucketlist.php?deleteid=<?= $item['id'] ?>">Ta bort</a>
         </article>
 
     <?php endforeach; ?>

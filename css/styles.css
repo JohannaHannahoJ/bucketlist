@@ -1,4 +1,3 @@
-
 *,
 *::before,
 *::after {
@@ -15,7 +14,8 @@
     --light-bg: rgb(240, 233, 226);
 }
 
-html, body {
+html,
+body {
     height: 100%;
 }
 
@@ -30,8 +30,8 @@ h1 {
     margin-bottom: 1rem;
 }
 
-main > p,
-main > .ingress {
+main>p,
+main>.ingress {
     margin-bottom: 1.5rem;
 }
 
@@ -96,7 +96,7 @@ nav a.active {
     flex: 1 1 280px;
 
     border-radius: 8px;
-    border:2px dotted var(--text);
+    border: 2px dotted var(--text);
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
 }
 
@@ -108,6 +108,23 @@ nav a.active {
 .bucketlist-card .priority {
     font-size: 0.8rem;
     margin-top: 1rem;
+}
+
+.delete-button {
+    display: inline-block;
+    font-size: 0.85rem;
+    padding: 0.3rem 0.8rem;
+    margin-top: 1rem;
+    border-radius: 5px;
+    background-color: var(--light-bg);
+    color: var(--text);
+    text-decoration: none;
+    border: 1px solid var(--text);
+}
+
+.delete-button:hover {
+    background-color: var(--text);
+    color: var(--piff);
 }
 
 .add-bucketlist {

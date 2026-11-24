@@ -3,15 +3,11 @@
 
 class Bucketlist
 {
-
     //properties
     private PDO $db;
-    private $name;
-    private $description;
-    private $priority;
 
     // Constructor
-    function __construct()
+    public function __construct()
     {
         $database = new Database();
         $this->db = $database->getConnection();
@@ -44,5 +40,14 @@ class Bucketlist
         $stmt = $this->db->query($sql);
 
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    // Ta bort ett listobjekt
+    public function deleteItem(int $id): bool
+    {
+        $sql = "DELETE FROM bucketlist WHERE id = :id";
+        $stmt = $this->db->prepare($sql);
+
+        return $stmt->execute([':id' => $id]);
     }
 }
