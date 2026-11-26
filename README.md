@@ -1,9 +1,10 @@
 # Laboration 2, introduktion till PHP
-Det här prijektet är en del av kursen **Webbutveckling för WordPress** som ges vid Mittuniversitetets webbutvecklingsprogram.
+Det här projektet är en del av kursen **Webbutveckling för WordPress** som ges vid Mittuniversitetets webbutvecklingsprogram.
 
 Syftet med laborationen är att skapa en webbplats med HTML, CSS, objektorienterad PHP och databasanslutning.
 
 **Länk till webbplatsen**: [Min bucketlist](https://studenter.miun.se/~joha2102/dt209g/bucketlist/index.php)
+
 **ER- och UML-diagram**: Se mappen `documentation/`.
 
 ## Webbplatsens innehåll
