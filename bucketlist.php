@@ -29,8 +29,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if (empty($nameError) && empty($priorityError)) {
         if ($bucketlist->add($name, $description, (int)$priority)) {
-            echo '<p class="message">Tillagd i bucketlistan!</p>';
-            $name = $description = $priority = '';
+            header('Location: bucketlist.php?added=1');
+            exit;
         } else {
             echo '<p class="message error">Hoppsan! Något gick fel.</p>';
         }
@@ -51,6 +51,11 @@ if (isset($_GET['deleteid'])) {
 $items = $bucketlist->getAll();
 
 require_once 'includes/header.php';
+
+if (isset($_GET['added'])) : ?>
+    <p class="message">Tillagd i bucketlistan!</p>
+<?php endif;
+
 ?>
 
 <h1>Saker jag vill</h1>
