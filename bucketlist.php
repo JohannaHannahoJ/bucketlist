@@ -11,6 +11,7 @@ $description = '';
 $priority = '';
 
 $nameError = '';
+$descriptionError = '';
 $priorityError = '';
 
 // Kolla om formuläret är postat och hämtar värden
@@ -23,19 +24,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $nameError = 'Du måste ange vad du vill göra.';
     }
 
+    if (empty($description)) {
+        $descriptionError = 'Du måste skriva en beskrivning.';
+    }
+
     if (empty($priority)) {
         $priorityError = 'Du måste välja en prioritet.';
     }
 
-    if (empty($nameError) && empty($priorityError)) {
+    if (empty($nameError) && empty($descriptionError) && empty($priorityError)) {
         if ($bucketlist->add($name, $description, (int)$priority)) {
-            header('Location: bucketlist.php?added=1');
+            header('Location: bucketlist.php?added=1#top');
             exit;
         } else {
             echo '<p class="message error">Hoppsan! Något gick fel.</p>';
         }
     }
 }
+
+require_once 'includes/header.php';
 
 // Kolla om en bucketlist-post ska tas bort
 if (isset($_GET['deleteid'])) {
@@ -49,8 +56,6 @@ if (isset($_GET['deleteid'])) {
 }
 
 $items = $bucketlist->getAll();
-
-require_once 'includes/header.php';
 
 if (isset($_GET['added'])) : ?>
     <p class="message">Tillagd i bucketlistan!</p>
@@ -87,10 +92,10 @@ if (isset($_GET['added'])) : ?>
     <?php endforeach; ?>
 </div>
 
-<section class="add-bucketlist">
+<section class="add-bucketlist" id="add-form">
     <h2>Lägg till något på min bucketlist</h2>
 
-    <form method="post" action="bucketlist.php">
+    <form method="post" action="bucketlist.php#add-form">
         <label for="name">Vad vill du göra?</label>
         <input type="text" id="name" name="name"
             placeholder="Ex. Resa till Japan eller lära mig stå på händer..."
@@ -101,8 +106,12 @@ if (isset($_GET['added'])) : ?>
         <?php endif; ?>
 
         <label for="description">Berätta lite mer!</label>
-        <textarea id="description" name="description"
+        <textarea id="description" name="description" required
             placeholder="Vad har du tänkt dig? Varför vill du göra det?"><?= htmlspecialchars($description) ?></textarea>
+
+        <?php if (!empty($descriptionError)) : ?>
+            <p class="message error"><?= $descriptionError ?></p>
+        <?php endif; ?>
 
         <label for="priority">Hur viktigt är det för dig att förverkliga den här drömmen?</label>
         <select id="priority" name="priority" required>
