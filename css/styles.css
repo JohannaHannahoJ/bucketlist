@@ -84,6 +84,20 @@ nav a.active {
     z-index: 1000;
 }
 
+.content-text {
+    max-width: 720px;
+    margin: 2rem auto;
+    line-height: 1.8;
+    padding: 0 1rem;
+}
+
+.content-text p {
+    margin-bottom: 1.5rem;
+}
+
+.ingress {
+    font-size: 1.1rem;
+}
 .bucketlist {
     display: flex;
     flex-wrap: wrap;
